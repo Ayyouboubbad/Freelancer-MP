@@ -11,7 +11,7 @@ import {
   ResponsiveContainer, BarChart, Bar,
 } from 'recharts';
 
-const MONTH_NAMES = ['', 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const MONTH_NAMES = ['null', 'Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 const AdminDashboard = () => {
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
