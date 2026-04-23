@@ -101,7 +101,8 @@ const ClientDashboard = () => {
           <div className="py-16 text-center">
             <div className="text-5xl mb-4">📭</div>
             <p className="text-slate-400">No orders yet.</p>
-            <Link to="/" className="btn-primary btn-sm mt-4 inline-flex">Browse Gigs</Link>
+            <Link to="/" className="btn-primary btn-sm mt-4 inline-flex">Browse Gigs.</Link>
+
           </div>
         ) : (
           <div className="divide-y divide-white/5">
