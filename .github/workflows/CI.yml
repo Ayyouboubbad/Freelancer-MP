@@ -27,7 +27,7 @@ jobs:
       - name: Send frontend status to n8n
         if: always()
         run: |
-          curl -X POST https://YOUR-N8N-URL/webhook/ci-status \
+          curl -X POST https://legible-prepaid-chaste.ngrok-free.dev/webhook/ci-status \
           -H "Content-Type: application/json" \
           -d '{
             "job": "frontend",
@@ -59,7 +59,7 @@ jobs:
       - name: Send backend status to n8n
         if: always()
         run: |
-          curl -X POST https://YOUR-N8N-URL/webhook/ci-status \
+          curl -X POST https://legible-prepaid-chaste.ngrok-free.dev/webhook/ci-status \
           -H "Content-Type: application/json" \
           -d '{
             "job": "backend",
