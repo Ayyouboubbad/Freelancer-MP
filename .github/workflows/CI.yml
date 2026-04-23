@@ -22,7 +22,7 @@ jobs:
       - run: npm install
 
       - run: npm run build || echo "no build script"
-
+      # 📡 Send status to n8n (frontend)
       # 📡 Send status to n8n (frontend)
       - name: Send frontend status to n8n
         if: always()
