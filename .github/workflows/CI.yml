@@ -27,15 +27,9 @@ jobs:
       - name: Send frontend status to n8n
         if: always()
         run: |
-          curl -X POST https://legible-prepaid-chaste.ngrok-free.dev/webhook/ci-status \
+          curl -X POST "https://legible-prepaid-chaste.ngrok-free.dev/webhook/ci-status" \
           -H "Content-Type: application/json" \
-          -d '{
-            "job": "frontend",
-            "status": "${{ job.status }}",
-            "repo": "${{ github.repository }}",
-            "commit": "${{ github.sha }}",
-            "branch": "${{ github.ref_name }}"
-          }'
+          -d "{\"job\":\"frontend\",\"status\":\"${{ job.status }}\",\"repo\":\"${{ github.repository }}\",\"commit\":\"${{ github.sha }}\",\"branch\":\"${{ github.ref_name }}\"}" || true
 
 
   backend:
@@ -59,12 +53,6 @@ jobs:
       - name: Send backend status to n8n
         if: always()
         run: |
-          curl -X POST https://legible-prepaid-chaste.ngrok-free.dev/webhook/ci-status \
+          curl -X POST "https://legible-prepaid-chaste.ngrok-free.dev/webhook/ci-status" \
           -H "Content-Type: application/json" \
-          -d '{
-            "job": "backend",
-            "status": "${{ job.status }}",
-            "repo": "${{ github.repository }}",
-            "commit": "${{ github.sha }}",
-            "branch": "${{ github.ref_name }}"
-          }'
+          -d "{\"job\":\"backend\",\"status\":\"${{ job.status }}\",\"repo\":\"${{ github.repository }}\",\"commit\":\"${{ github.sha }}\",\"branch\":\"${{ github.ref_name }}\"}" || true
