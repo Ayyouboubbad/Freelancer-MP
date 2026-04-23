@@ -14,14 +14,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - run: npm install
-        continue-on-error: true
 
       - run: npm run build || echo "no build script"
+
+      # 📡 Send status to n8n (frontend)
+      - name: Send frontend status to n8n
+        if: always()
+        run: |
+          curl -X POST https://YOUR-N8N-URL/webhook/ci-status \
+          -H "Content-Type: application/json" \
+          -d '{
+            "job": "frontend",
+            "status": "${{ job.status }}",
+            "repo": "${{ github.repository }}",
+            "commit": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}"
+          }'
+
 
   backend:
     runs-on: ubuntu-latest
@@ -31,11 +46,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - run: npm install
-        continue-on-error: true
 
       - run: npm test || echo "no tests yet"
+
+      # 📡 Send status to n8n (backend)
+      - name: Send backend status to n8n
+        if: always()
+        run: |
+          curl -X POST https://YOUR-N8N-URL/webhook/ci-status \
+          -H "Content-Type: application/json" \
+          -d '{
+            "job": "backend",
+            "status": "${{ job.status }}",
+            "repo": "${{ github.repository }}",
+            "commit": "${{ github.sha }}",
+            "branch": "${{ github.ref_name }}"
+          }'
